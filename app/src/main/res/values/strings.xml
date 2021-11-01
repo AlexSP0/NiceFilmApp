@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NiceFilmApp</string>
+    <string name="menu_main_string">Search</string>
+
 </resources>
