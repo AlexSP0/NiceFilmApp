@@ -7,11 +7,18 @@ import androidx.*
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragmentImpl
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var fragmentManaget : FragmentManager
+        fragmentManaget = supportFragmentManager
+        var fragment : Fragment
+        fragment=MainFilmsFragmentImpl.newInstance()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
