@@ -1,9 +1,12 @@
 package com.alexsp0.nicefilmapp
 
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
+
+import androidx.*
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
