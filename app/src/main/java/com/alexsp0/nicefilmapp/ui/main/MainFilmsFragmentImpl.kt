@@ -13,8 +13,8 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = presenter?: MainFilmsPresenterImpl()
-        presenter.attachView(this);
+        presenter = MainFilmsPresenterImpl()
+        presenter.attachView(this)
 
     }
 
