@@ -18,6 +18,7 @@ import java.util.List;
 public class MainFilmsFragmentAdapter extends RecyclerView.Adapter<MainFilmsFragmentAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private final List<Film> films;
+    public  MainFilmsFragmentAdapter.OnItemClickListener itemClickListener;
 
     public MainFilmsFragmentAdapter (Context context, List<Film> films) {
         this.films = films;
@@ -37,7 +38,6 @@ public class MainFilmsFragmentAdapter extends RecyclerView.Adapter<MainFilmsFrag
         holder.image.setImageResource(film.getCover());
         holder.genre.setText(film.getGenre());
         holder.name.setText(film.getName());
-
     }
 
     @Override
@@ -45,7 +45,7 @@ public class MainFilmsFragmentAdapter extends RecyclerView.Adapter<MainFilmsFrag
         return films.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView image;
         final TextView name, genre;
         public ViewHolder(View view) {
@@ -53,7 +53,21 @@ public class MainFilmsFragmentAdapter extends RecyclerView.Adapter<MainFilmsFrag
             image = view.findViewById(R.id.film_recycler_view_item_cover);
             name = view.findViewById(R.id.film_recycler_view_item_name);
             genre = view.findViewById(R.id.film_recycler_view_item_genre);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainFilmsFragmentAdapter.this.itemClickListener.onItemClick(view, getLayoutPosition());
+                }
+            });
         }
 
+    }
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    interface OnItemClickListener {
+        void  onItemClick(View view, int position);
     }
 }
