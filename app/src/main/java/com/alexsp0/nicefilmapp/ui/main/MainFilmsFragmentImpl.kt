@@ -28,18 +28,34 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        //Пока заглушки для инициализации фрагментов и фильмов.
+        //При клике на элемент откроется экран фильмов, но пока replace
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
         recyclerView1 = view.findViewById(R.id.recyclerview1)
         recyclerView1.hasFixedSize()
         initFilms() //Заглушка
-        var adapter1 = MainFilmsFragmentAdapter(this.context, films)
+        var adapter1 = MainFilmsFragmentAdapter(films)
+        adapter1.setItemClickListener(object : MainFilmsFragmentAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, position: Int) {
+                openCurrentFilmFragment(view, position)
+            }
+        })
         recyclerView1.adapter = adapter1
         recyclerView2 = view.findViewById(R.id.recyclerview2)
         recyclerView2.hasFixedSize()
-        var adapter2 = MainFilmsFragmentAdapter(this.context, films)
+        var adapter2 = MainFilmsFragmentAdapter(films)
+        adapter2.setItemClickListener(object : MainFilmsFragmentAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, position: Int) {
+                openCurrentFilmFragment(view, position)
+            }
+        })
         recyclerView2.adapter = adapter2
         return view
+    }
+
+    private fun openCurrentFilmFragment(view: View?, position: Int) {
+        this.parentFragmentManager.beginTransaction().replace(R.id.fragment_container,
+            CurrentFilmFragment.newInstance(films[position])).commit()
     }
 
     private fun initFilms() {
@@ -70,4 +86,5 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     override fun updateFilms() {
         //Update films recyclerview
     }
+
 }

@@ -10,12 +10,13 @@ import android.widget.ImageView
 import com.alexsp0.nicefilmapp.R
 import android.widget.TextView
 
-class MainFilmsFragmentAdapter(context: Context?, private val films: List<Film>) :
+class MainFilmsFragmentAdapter(private val films: List<Film>) :
     RecyclerView.Adapter<MainFilmsFragmentAdapter.ViewHolder>() {
-    private val inflater: LayoutInflater
-    private var itemClickListener: OnItemClickListener? = null
+
+    private lateinit var itemClickListener: OnItemClickListener
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = inflater.inflate(R.layout.film_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.film_recycler_view_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -39,19 +40,17 @@ class MainFilmsFragmentAdapter(context: Context?, private val films: List<Film>)
             image = view.findViewById(R.id.film_recycler_view_item_cover)
             name = view.findViewById(R.id.film_recycler_view_item_name)
             genre = view.findViewById(R.id.film_recycler_view_item_genre)
-            view.setOnClickListener { itemClickListener!!.onItemClick(view, layoutPosition) }
+            view.setOnClickListener(View.OnClickListener {
+                this@MainFilmsFragmentAdapter.itemClickListener.onItemClick(view, layoutPosition)
+            })
         }
     }
 
-    fun setItemClickListener(itemClickListener: OnItemClickListener?) {
-        this.itemClickListener = itemClickListener
+    fun setItemClickListener(c: OnItemClickListener) {
+        itemClickListener = c
     }
 
     interface OnItemClickListener {
         fun onItemClick(view: View?, position: Int)
-    }
-
-    init {
-        inflater = LayoutInflater.from(context)
     }
 }
