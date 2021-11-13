@@ -8,11 +8,11 @@ class MainFilmsPresenterImpl : MainFilmsPresenter {
     private var fragment : MainFilmsFragment? = null
     private var model : MainModelImpl = MainModelImpl()
 
-    public fun attachView(fragment : MainFilmsFragment) {
+    fun attachView(fragment : MainFilmsFragment) {
         this.fragment = fragment
     }
-    public fun detach() {
-        this.fragment = null;
+    fun detach() {
+        this.fragment = null
     }
 
     override fun getFilms() {

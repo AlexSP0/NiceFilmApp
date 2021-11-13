@@ -10,12 +10,7 @@ import androidx.fragment.app.Fragment
 import com.alexsp0.nicefilmapp.R
 import com.alexsp0.nicefilmapp.utils.Film
 
-class CurrentFilmFragment(film: Film) : Fragment() {
-    private var film : Film = film
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class CurrentFilmFragment(private var film: Film) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +25,9 @@ class CurrentFilmFragment(film: Film) : Fragment() {
     }
 
     private fun initView(view : View) {
-        var name : TextView = view.findViewById(R.id.fragment_current_film_name)
-        var genre : TextView = view.findViewById(R.id.fragment_current_film_genre)
-        var image : ImageView = view.findViewById(R.id.fragment_current_film_cover_image)
+        val name : TextView = view.findViewById(R.id.fragment_current_film_name)
+        val genre : TextView = view.findViewById(R.id.fragment_current_film_genre)
+        val image : ImageView = view.findViewById(R.id.fragment_current_film_cover_image)
         name.text = film.name
         genre.text=film.genre
         image.setImageResource(film.cover)

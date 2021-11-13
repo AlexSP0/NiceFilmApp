@@ -1,6 +1,5 @@
 package com.alexsp0.nicefilmapp.ui.main
 
-import android.content.Context
 import com.alexsp0.nicefilmapp.utils.Film
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -32,17 +31,14 @@ class MainFilmsFragmentAdapter(private val films: List<Film>) :
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView
-        val name: TextView
-        val genre: TextView
+        val image: ImageView = view.findViewById(R.id.film_recycler_view_item_cover)
+        val name: TextView = view.findViewById(R.id.film_recycler_view_item_name)
+        val genre: TextView = view.findViewById(R.id.film_recycler_view_item_genre)
 
         init {
-            image = view.findViewById(R.id.film_recycler_view_item_cover)
-            name = view.findViewById(R.id.film_recycler_view_item_name)
-            genre = view.findViewById(R.id.film_recycler_view_item_genre)
-            view.setOnClickListener(View.OnClickListener {
+            view.setOnClickListener {
                 this@MainFilmsFragmentAdapter.itemClickListener.onItemClick(view, layoutPosition)
-            })
+            }
         }
     }
 
