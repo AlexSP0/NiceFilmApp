@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/recyclerview_margin"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/film_recycler_view_item_cover"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="@dimen/recycler_view_image_size"
+        android:layout_height="@dimen/recycler_view_image_size"
         tools:srcCompat="@tools:sample/avatars"></ImageView>
 
     <LinearLayout
@@ -22,14 +22,14 @@
             android:id="@+id/film_recycler_view_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="@dimen/recyclerview_textview_margin"
             tools:text="Название" />
 
         <TextView
             android:id="@+id/film_recycler_view_item_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="@dimen/recyclerview_textview_margin"
             tools:text="Жанр" />
     </LinearLayout>
 
