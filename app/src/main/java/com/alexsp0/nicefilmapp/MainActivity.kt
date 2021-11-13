@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragmentImpl
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,13 @@ class MainActivity : AppCompatActivity() {
         var fragment : Fragment
         fragment=MainFilmsFragmentImpl.newInstance()
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+        initNavigationView();
 
+    }
+
+    private fun initNavigationView() {
+        var navigationView : BottomNavigationView = this.findViewById(R.id.navigationView)
+        navigationView.itemIconTintList=null
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
