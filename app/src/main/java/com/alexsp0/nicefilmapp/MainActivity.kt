@@ -10,6 +10,11 @@ import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragmentImpl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 
+//Функция-расширение как выражение и как фича котлина
+fun MainActivity.showSnackbarWithText(res : Int) =
+    Snackbar.make(this.findViewById(android.R.id.content),
+        this.applicationContext.resources.getText(res),
+        Snackbar.LENGTH_SHORT).show()
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +67,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun showWarning() {
-        Snackbar.make(findViewById(android.R.id.content), "Get back", Snackbar.LENGTH_LONG).show()
+        this.showSnackbarWithText(R.string.snackbar_text)
     }
 }
