@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alexsp0.nicefilmapp.MainActivity
 import com.alexsp0.nicefilmapp.R
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
 import com.alexsp0.nicefilmapp.utils.Film
@@ -54,8 +55,8 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     }
 
     private fun openCurrentFilmFragment(view: View?, position: Int) {
-        this.parentFragmentManager.beginTransaction().replace(R.id.fragment_container,
-            CurrentFilmFragment.newInstance(films[position])).commit()
+        var act = activity as MainActivity
+        act.loadFragment(CurrentFilmFragment.newInstance(films[position]))
     }
 
     private fun initFilms() {

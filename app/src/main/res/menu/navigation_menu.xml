@@ -7,11 +7,10 @@
         android:title="Home"
         android:visible="true"
         android:enabled="true"
-
         android:icon="@drawable/ic_home_svgrepo_com"
         />
     <item
-        android:id="@+id/navigation_menu_item"
+        android:id="@+id/navigation_menu_back"
         android:title="Back"
         android:icon="@drawable/ic_home_svgrepo_com"
         />

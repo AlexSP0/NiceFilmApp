@@ -9,8 +9,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.alexsp0.nicefilmapp.R.id.navigation_menu_home
 import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragmentImpl
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         var fragmentManager : FragmentManager = supportFragmentManager
         var fragment : Fragment
         fragment=MainFilmsFragmentImpl.newInstance()
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+        loadFragment(fragment)
         initNavigationView();
 
     }
@@ -27,6 +29,17 @@ class MainActivity : AppCompatActivity() {
     private fun initNavigationView() {
         var navigationView : BottomNavigationView = this.findViewById(R.id.navigationView)
         navigationView.itemIconTintList=null
+        navigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_menu_home -> {
+                    loadFragment(MainFilmsFragmentImpl.newInstance())
+                }
+                R.id.navigation_menu_back -> {
+                    loadPreviousFragment()
+                }
+            }
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,5 +55,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+    fun loadFragment(fragment : Fragment) {
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, fragment).addToBackStack(fragment.toString()).commit()
+    }
+    fun loadPreviousFragment() {
+        if(supportFragmentManager.backStackEntryCount>1) {
+            supportFragmentManager.popBackStack()
+        }
     }
 }
