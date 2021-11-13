@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_main_elevation">4dp</dimen>
+    <dimen name="recycler_view_image_size">170dp</dimen>
+    <dimen name="recyclerview_textview_margin">16dp</dimen>
+    <dimen name="recyclerview_margin">10dp</dimen>
+    <dimen name="current_film_fragment_margin">10dp</dimen>
+    <dimen name="current_film_text_size">26sp</dimen>
+</resources>
