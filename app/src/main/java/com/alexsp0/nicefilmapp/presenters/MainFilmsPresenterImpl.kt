@@ -9,6 +9,7 @@ import com.alexsp0.nicefilmapp.utils.Film
 class MainFilmsPresenterImpl : MainFilmsPresenter {
 
     private var fragment : MainFilmsFragment? = null
+    private lateinit var films : MutableList<Film>
     @RequiresApi(Build.VERSION_CODES.N)
     private var model : MainModelImpl = MainModelImpl(this)
 
@@ -20,15 +21,15 @@ class MainFilmsPresenterImpl : MainFilmsPresenter {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    override fun getFilms() : MutableList<Film> {
+    override fun getFilms() {
         fragment?.showProgressbar()
-        return model.getFilms()
+        model.getFilms()
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun updateFilms() : MutableList<Film>{
-        //tell MainFragment to update Film on screen
-        return model.getFilms()
+    override fun LoadedFilms(films: MutableList<Film>) {
+        fragment?.hideProgressbar()
+        fragment?.updateFilms(films)
     }
+
 
 }

@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.lang.Exception
+import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
@@ -27,27 +28,25 @@ class MainModelImpl(private var presenter: MainFilmsPresenter) : MainModel {
     private lateinit var films : MutableList<Film>
     private lateinit var genres : MutableMap<String, Int>
     private val gson by lazy { Gson() }
-    override fun getFilms() : MutableList<Film> {
-        Thread {
-            var connection : HttpsURLConnection? = null;
-            try {
-                val url = URL("https://api.themoviedb.org/3/discover/movie?api_key=73df235f5cb8302518d3645a4ba68838&language=ru-RU&sort_by=popularity.desc")
-                connection = url.openConnection() as HttpsURLConnection
-                connection.requestMethod = "GET"
-                connection.readTimeout = 5000
-                val reader = BufferedReader(InputStreamReader(connection.inputStream))
-                var result = reader.readLines().toString()
-                val resJson = gson.fromJson(result, Array<Film>::class.java)
-                for(film in resJson) {
-                    films.add(film)
-                }
-            } catch (e : Exception) {
+    override fun getFilms() {
+            Thread { ///!!!! Не работает.
+                var connection: HttpURLConnection? = null;
+                try {
+                    val url = URL("https://api.themoviedb.org/3/discover/movie?api_key=73df235f5cb8302518d3645a4ba68838&language=ru-RU&sort_by=popularity.desc")
+                    connection = url.openConnection() as HttpURLConnection
+                    connection.requestMethod = "GET"
+                    connection.readTimeout = 5_000
+                    val reader = BufferedReader(InputStreamReader(connection.inputStream))
+                    var result = reader.readLines().toString()
+                    val resJson = gson.fromJson(result, Array<Film>::class.java)
+                    for (film in resJson) {
+                        films.add(film)
+                    }
+                    presenter.LoadedFilms(films)
+                } catch (e : Exception) {
 
-            } finally {
-                connection?.disconnect()
+                }
             }
-        }
-        return films
     }
     @RequiresApi(Build.VERSION_CODES.N)
     public fun loadGenres() {

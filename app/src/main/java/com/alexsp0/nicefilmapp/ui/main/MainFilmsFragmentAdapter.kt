@@ -21,9 +21,9 @@ class MainFilmsFragmentAdapter(private val films: List<Film>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val film = films[position]
-        holder.image.setImageResource(film.cover)
-        holder.genre.text = film.genre
-        holder.name.text = film.name
+        holder.image.setImageResource(R.drawable.film)
+        holder.genre.text = film.original_language
+        holder.name.text = film.title
     }
 
     override fun getItemCount(): Int {

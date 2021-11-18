@@ -28,9 +28,9 @@ class CurrentFilmFragment(private var film: Film) : Fragment() {
         val name : TextView = view.findViewById(R.id.fragment_current_film_name)
         val genre : TextView = view.findViewById(R.id.fragment_current_film_genre)
         val image : ImageView = view.findViewById(R.id.fragment_current_film_cover_image)
-        name.text = film.name
-        genre.text=film.genre
-        image.setImageResource(film.cover)
+        name.text = film.title
+        genre.text=film.original_language
+        image.setImageResource(R.drawable.film)
     }
 
     companion object {
