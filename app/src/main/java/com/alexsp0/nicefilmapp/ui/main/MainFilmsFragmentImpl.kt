@@ -1,11 +1,13 @@
 package com.alexsp0.nicefilmapp.ui.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.alexsp0.nicefilmapp.MainActivity
 import com.alexsp0.nicefilmapp.R
@@ -16,7 +18,7 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     private lateinit var presenter : MainFilmsPresenterImpl
     private lateinit var recyclerView1 : RecyclerView
     private lateinit var recyclerView2 : RecyclerView
-    private lateinit var films : ArrayList<Film>
+    private lateinit var films : MutableList<Film>
     private lateinit var progressBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +27,7 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
         presenter.attachView(this)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

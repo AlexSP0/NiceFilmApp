@@ -25,8 +25,10 @@ class MainFilmsPresenterImpl : MainFilmsPresenter {
         return model.getFilms()
     }
 
-    override fun updateFilms() {
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun updateFilms() : MutableList<Film>{
         //tell MainFragment to update Film on screen
+        return model.getFilms()
     }
 
 }
