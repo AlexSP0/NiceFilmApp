@@ -22,12 +22,12 @@ class MainFilmsPresenterImpl : MainFilmsPresenter {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun getFilms() {
-        fragment?.showProgressbar()
+        //fragment?.showProgressbar()
         model.getFilms()
     }
 
     override fun LoadedFilms(films: ArrayList<Film>) {
-        fragment?.hideProgressbar()
+       // fragment?.hideProgressbar()
         fragment?.updateFilms(films)
     }
 

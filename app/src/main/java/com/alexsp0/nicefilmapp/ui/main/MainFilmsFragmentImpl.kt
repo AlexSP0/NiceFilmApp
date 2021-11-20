@@ -23,11 +23,12 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     private var films : ArrayList<Film> = arrayListOf()
     private lateinit var progressBar : ProgressBar
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = MainFilmsPresenterImpl()
         presenter.attachView(this)
-
+        //initFilms()
     }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
@@ -35,13 +36,17 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
         savedInstanceState: Bundle?
     ): View {
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
+        progressBar = view.findViewById(R.id.progrees_bar_load_films)
+        presenter.getFilms()
         initRecyclersView(view)
-        presenter.getFilms()  // не обновляет recyclerview!!
-        //initfilms()  //А так нормально показывает элементы!
         return view
     }
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
+        //initFilms()
+    }
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun initRecyclersView(view: View) {
-        progressBar = view.findViewById(R.id.progrees_bar_load_films)
         recyclerView1 = view.findViewById(R.id.recyclerview1)
         recyclerView1.hasFixedSize()
         adapter1 = MainFilmsFragmentAdapter(films)
@@ -80,8 +85,6 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     override fun updateFilms(films : ArrayList<Film>) {
         this.films.clear()
         this.films.addAll(films)
-        adapter1.notifyDataSetChanged()
-        adapter2.notifyDataSetChanged()
     }
 
     override fun showProgressbar() {

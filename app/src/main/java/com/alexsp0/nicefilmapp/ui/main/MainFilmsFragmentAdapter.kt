@@ -9,7 +9,7 @@ import android.widget.ImageView
 import com.alexsp0.nicefilmapp.R
 import android.widget.TextView
 
-class MainFilmsFragmentAdapter(private val films: List<Film>) :
+class MainFilmsFragmentAdapter(var films : ArrayList<Film>) :
     RecyclerView.Adapter<MainFilmsFragmentAdapter.ViewHolder>() {
 
     private lateinit var itemClickListener: OnItemClickListener
@@ -28,6 +28,10 @@ class MainFilmsFragmentAdapter(private val films: List<Film>) :
 
     override fun getItemCount(): Int {
         return films.size
+    }
+    public fun update(array :ArrayList<Film>) {
+        this.films = array
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

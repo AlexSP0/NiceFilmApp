@@ -23,11 +23,12 @@ class MainModelImpl(private var presenter: MainFilmsPresenter) : MainModel {
     init {
         this.presenter = presenter
     }
+
     private val apiKey = "73df235f5cb8302518d3645a4ba68838"
     private val TmdbUrl = "https://api.themoviedb.org/3/movie/"
     private val language = "ru-RU"
-    private var films : ArrayList<Film> = arrayListOf()
-    private lateinit var genres : MutableMap<String, Int>
+    private var films: ArrayList<Film> = arrayListOf()
+    private lateinit var genres: MutableMap<String, Int>
     private val gson by lazy { Gson() }
     override fun getFilms() {
         val myService : ExecutorService = Executors.newFixedThreadPool(2)
@@ -55,8 +56,15 @@ class MainModelImpl(private var presenter: MainFilmsPresenter) : MainModel {
             }
             presenter.LoadedFilms(films)
         }
+//        var f1 = arrayListOf<Film>()
+//        val film = Film(
+//            false, arrayOf(0), 0, "asdasd", 0.0f, "",
+//            "1", false, 0.0f, 0
+//        )
+//        f1.add(film)
+        presenter.LoadedFilms(films)
     }
-    }
+
     @RequiresApi(Build.VERSION_CODES.N)
     public fun loadGenres() {
 //        Thread {
@@ -77,4 +85,5 @@ class MainModelImpl(private var presenter: MainFilmsPresenter) : MainModel {
 //            }
 //        }
 //    }
+    }
 }
