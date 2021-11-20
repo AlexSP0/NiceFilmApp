@@ -20,18 +20,15 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     private lateinit var recyclerView2 : RecyclerView
     private lateinit var adapter1: MainFilmsFragmentAdapter
     private lateinit var adapter2: MainFilmsFragmentAdapter
-    private lateinit var films : MutableList<Film>
+    private var films : ArrayList<Film> = arrayListOf()
     private lateinit var progressBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = MainFilmsPresenterImpl()
         presenter.attachView(this)
-        initFilms()
+
     }
-
-
-
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +36,12 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     ): View {
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
         initRecyclersView(view)
-        presenter.getFilms()
+        presenter.getFilms()  // не обновляет recyclerview!!
+        //initfilms()  //А так нормально показывает элементы!
         return view
     }
     private fun initRecyclersView(view: View) {
-        progressBar= view.findViewById(R.id.progrees_bar_load_films)
+        progressBar = view.findViewById(R.id.progrees_bar_load_films)
         recyclerView1 = view.findViewById(R.id.recyclerview1)
         recyclerView1.hasFixedSize()
         adapter1 = MainFilmsFragmentAdapter(films)
@@ -64,9 +62,9 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
         })
     }
     private fun initFilms() {
-        films = mutableListOf<Film>()
-        val film = Film(false, arrayOf(0), 0, "", 0.0f, "",
-        "", false, 0.0f, 0)
+        films = arrayListOf<Film>()
+        val film = Film(false, arrayOf(0), 0, "asdasd", 0.0f, "",
+        "1", false, 0.0f, 0)
         films.add(film)
     }
     private fun openCurrentFilmFragment(position: Int) {
@@ -79,8 +77,9 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
         fun newInstance() =  MainFilmsFragmentImpl()
     }
 
-    override fun updateFilms(films : MutableList<Film>) {
-        this.films = films
+    override fun updateFilms(films : ArrayList<Film>) {
+        this.films.clear()
+        this.films.addAll(films)
         adapter1.notifyDataSetChanged()
         adapter2.notifyDataSetChanged()
     }

@@ -9,7 +9,7 @@ import com.alexsp0.nicefilmapp.utils.Film
 class MainFilmsPresenterImpl : MainFilmsPresenter {
 
     private var fragment : MainFilmsFragment? = null
-    private lateinit var films : MutableList<Film>
+    private lateinit var films : ArrayList<Film>
     @RequiresApi(Build.VERSION_CODES.N)
     private var model : MainModelImpl = MainModelImpl(this)
 
@@ -26,7 +26,7 @@ class MainFilmsPresenterImpl : MainFilmsPresenter {
         model.getFilms()
     }
 
-    override fun LoadedFilms(films: MutableList<Film>) {
+    override fun LoadedFilms(films: ArrayList<Film>) {
         fragment?.hideProgressbar()
         fragment?.updateFilms(films)
     }

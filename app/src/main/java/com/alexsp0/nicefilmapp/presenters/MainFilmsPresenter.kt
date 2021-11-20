@@ -4,5 +4,5 @@ import com.alexsp0.nicefilmapp.utils.Film
 
 interface MainFilmsPresenter {
     fun getFilms()
-    fun LoadedFilms(films : MutableList<Film>)
+    fun LoadedFilms(films : ArrayList<Film>)
 }
