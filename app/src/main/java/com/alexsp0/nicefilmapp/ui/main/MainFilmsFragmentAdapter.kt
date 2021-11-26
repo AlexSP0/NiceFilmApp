@@ -9,7 +9,7 @@ import android.widget.ImageView
 import com.alexsp0.nicefilmapp.R
 import android.widget.TextView
 
-class MainFilmsFragmentAdapter(private val films: List<Film>) :
+class MainFilmsFragmentAdapter(var films : ArrayList<Film>) :
     RecyclerView.Adapter<MainFilmsFragmentAdapter.ViewHolder>() {
 
     private lateinit var itemClickListener: OnItemClickListener
@@ -21,13 +21,17 @@ class MainFilmsFragmentAdapter(private val films: List<Film>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val film = films[position]
-        holder.image.setImageResource(film.cover)
-        holder.genre.text = film.genre
-        holder.name.text = film.name
+        holder.image.setImageResource(R.drawable.film)
+        holder.genre.text = film.original_language
+        holder.name.text = film.title
     }
 
     override fun getItemCount(): Int {
         return films.size
+    }
+    public fun update(array :ArrayList<Film>) {
+        this.films = array
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
