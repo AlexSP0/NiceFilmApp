@@ -5,8 +5,8 @@ import android.content.Intent
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
 
-private const val EXTRA_TAG = "TAG"
-private const val EXTRA_LOG_TEXT = "LOG_TEXT"
+const val EXTRA_TAG = "TAG"
+const val EXTRA_LOG_TEXT = "LOG_TEXT"
 
 class LogIntentService(name : String = "LogIntentService") : IntentService(name) {
 
