@@ -66,12 +66,7 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
             }
         })
     }
-    private fun initFilms() {
-        films = arrayListOf<Film>()
-        val film = Film(false, arrayOf(0), 0, "asdasd", 0.0f, "",
-        "1", false, 0.0f, 0)
-        films.add(film)
-    }
+
     private fun openCurrentFilmFragment(position: Int) {
         val act = activity as MainActivity
         act.loadFragment(CurrentFilmFragment.newInstance(films[position]))
@@ -85,6 +80,7 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     override fun updateFilms(films : ArrayList<Film>) {
         this.films.clear()
         this.films.addAll(films)
+        adapter1.notifyDataSetChanged()
     }
 
     override fun showProgressbar() {

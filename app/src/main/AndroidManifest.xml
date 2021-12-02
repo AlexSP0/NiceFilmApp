@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <service
             android:name=".services.LogIntentService"
-            android:exported="false"/>
+            android:exported="false"></service>
 
         <activity
             android:name=".MainActivity"
