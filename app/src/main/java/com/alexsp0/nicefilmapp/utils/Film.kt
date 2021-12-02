@@ -24,4 +24,5 @@ data class Film(
     @SerializedName("vote_average")
     var vote_average : Float,
     @SerializedName("vote_count")
-    var vote_count : Int)
+    var vote_count : Int,
+    var imagePath : String )

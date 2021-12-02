@@ -10,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import kotlin.collections.ArrayList
+ public val IMAGE_PATH = "https://image.tmdb.org/t/p/w500"
 
 class RetrofitMainModelImpl (private var presenter: MainFilmsPresenter) : MainModel {
     private val retrofit = Retrofit.Builder()
@@ -32,18 +33,22 @@ class RetrofitMainModelImpl (private var presenter: MainFilmsPresenter) : MainMo
                         for (f in tmdb.results) {
                             films.add(f)
                         }
+                        getCoverUrl()
                         presenter.LoadedFilms(films)
                     }
-
                 } else {
                     //Something wrong
                 }
+
             }
             override fun onFailure(call: Call<TmdbObject>, t: Throwable) {
                 //Oops
             }
-
-
-            })
+        })
+    }
+    fun getCoverUrl () {
+        for(f in films) {
+            f.imagePath = IMAGE_PATH + f.poster_path
         }
+    }
 }
