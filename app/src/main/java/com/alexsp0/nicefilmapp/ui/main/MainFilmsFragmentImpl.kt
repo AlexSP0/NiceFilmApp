@@ -11,10 +11,11 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.alexsp0.nicefilmapp.MainActivity
 import com.alexsp0.nicefilmapp.R
+import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
 import com.alexsp0.nicefilmapp.utils.Film
 
-class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
+class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFilmsFragment  {
     private lateinit var presenter : MainFilmsPresenterImpl
     private lateinit var recyclerView1 : RecyclerView
     private lateinit var recyclerView2 : RecyclerView
@@ -22,13 +23,14 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     private lateinit var adapter2: MainFilmsFragmentAdapter
     private var films : ArrayList<Film> = arrayListOf()
     private lateinit var progressBar : ProgressBar
+    init {
+        this.presenter = presenter as MainFilmsPresenterImpl
+    }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = MainFilmsPresenterImpl()
         presenter.attachView(this)
-        //initFilms()
     }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
@@ -43,7 +45,7 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
-        //initFilms()
+
     }
     @RequiresApi(Build.VERSION_CODES.N)
     private fun initRecyclersView(view: View) {
@@ -74,7 +76,7 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
 
     companion object {
         @JvmStatic
-        fun newInstance() =  MainFilmsFragmentImpl()
+        fun newInstance(presenter : MainFilmsPresenter) =  MainFilmsFragmentImpl(presenter)
     }
 
     override fun updateFilms(films : ArrayList<Film>) {

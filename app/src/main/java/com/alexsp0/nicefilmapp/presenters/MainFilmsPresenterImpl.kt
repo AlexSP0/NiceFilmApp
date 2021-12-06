@@ -1,5 +1,6 @@
 package com.alexsp0.nicefilmapp.presenters
 
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.alexsp0.nicefilmapp.data.MainModelImpl
@@ -7,12 +8,11 @@ import com.alexsp0.nicefilmapp.data.RetrofitMainModelImpl
 import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragment
 import com.alexsp0.nicefilmapp.utils.Film
 
-class MainFilmsPresenterImpl : MainFilmsPresenter {
-
+class MainFilmsPresenterImpl(context: Context) : MainFilmsPresenter {
     private var fragment : MainFilmsFragment? = null
     private lateinit var films : ArrayList<Film>
     @RequiresApi(Build.VERSION_CODES.N)
-    private var model : RetrofitMainModelImpl = RetrofitMainModelImpl(this)
+    private var model : RetrofitMainModelImpl = RetrofitMainModelImpl(this, context)
 
     fun attachView(fragment : MainFilmsFragment) {
         this.fragment = fragment
@@ -32,5 +32,10 @@ class MainFilmsPresenterImpl : MainFilmsPresenter {
         fragment?.updateFilms(films)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getAdultSettings(): Boolean = model.loadAdultSetting()
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun setAdultSettings(showAdult: Boolean)  = model.saveAdultSetting(showAdult)
 
 }

@@ -5,4 +5,6 @@ import com.alexsp0.nicefilmapp.utils.Film
 interface MainFilmsPresenter {
     fun getFilms()
     fun LoadedFilms(films : ArrayList<Film>)
+    fun getAdultSettings() : Boolean
+    fun setAdultSettings(showAdult : Boolean)
 }

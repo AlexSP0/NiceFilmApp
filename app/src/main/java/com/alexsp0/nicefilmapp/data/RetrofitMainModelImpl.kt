@@ -1,6 +1,6 @@
 package com.alexsp0.nicefilmapp.data
 
-import androidx.lifecycle.MutableLiveData
+import android.content.Context
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.utils.Film
 import retrofit2.Call
@@ -8,11 +8,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import kotlin.collections.ArrayList
- public val IMAGE_PATH = "https://image.tmdb.org/t/p/w500"
+ public const val IMAGE_PATH = "https://image.tmdb.org/t/p/w500"
 
-class RetrofitMainModelImpl (private var presenter: MainFilmsPresenter) : MainModel {
+class RetrofitMainModelImpl (private var presenter: MainFilmsPresenter, context: Context) : MainModel(context) {
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.themoviedb.org/3/discover/")
         .addConverterFactory(GsonConverterFactory.create())
