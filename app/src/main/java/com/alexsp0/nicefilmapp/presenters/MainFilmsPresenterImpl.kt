@@ -10,7 +10,6 @@ import com.alexsp0.nicefilmapp.utils.Film
 
 class MainFilmsPresenterImpl(context: Context) : MainFilmsPresenter {
     private var fragment : MainFilmsFragment? = null
-    private lateinit var films : ArrayList<Film>
     @RequiresApi(Build.VERSION_CODES.N)
     private var model : RetrofitMainModelImpl = RetrofitMainModelImpl(this, context)
 
@@ -36,6 +35,9 @@ class MainFilmsPresenterImpl(context: Context) : MainFilmsPresenter {
     override fun getAdultSettings(): Boolean = model.loadAdultSetting()
 
     @RequiresApi(Build.VERSION_CODES.N)
-    override fun setAdultSettings(showAdult: Boolean)  = model.saveAdultSetting(showAdult)
+    override fun setAdultSettings(showAdult: Boolean) {
+        model.saveAdultSetting(showAdult)
+        this.getFilms()
+    }
 
 }

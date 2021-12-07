@@ -31,6 +31,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/recyclerview_textview_margin"
             tools:text="Жанр" />
+        <TextView
+            android:id="@+id/film_recycler_view_item_adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/recyclerview_textview_margin"
+            tools:text="для взрослых" />
     </LinearLayout>
 
 </LinearLayout>

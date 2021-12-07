@@ -39,8 +39,8 @@ class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFil
     ): View {
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
         progressBar = view.findViewById(R.id.progrees_bar_load_films)
-        presenter.getFilms()
         initRecyclersView(view)
+        presenter.getFilms()
         return view
     }
     @RequiresApi(Build.VERSION_CODES.N)

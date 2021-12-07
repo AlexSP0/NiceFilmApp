@@ -22,7 +22,9 @@ class RetrofitMainModelImpl (private var presenter: MainFilmsPresenter, context:
         this.presenter = presenter
     }
     override fun getFilms() {
-        query.loadFilms().enqueue(object : Callback<TmdbObject> {
+        var adultLoad = "false"
+        if (super.loadAdultSetting() == true) adultLoad = "true"
+        query.loadFilms(adultLoad).enqueue(object : Callback<TmdbObject> {
             override fun onResponse(call: Call<TmdbObject>, response: Response<TmdbObject>) {
                 val body = response.body()
                 if(response.isSuccessful && body != null) {

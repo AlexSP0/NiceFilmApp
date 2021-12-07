@@ -27,6 +27,8 @@ class MainFilmsFragmentAdapter(var films : ArrayList<Film>) :
         Glide.with(context).load(films[position].imagePath).placeholder(R.drawable.film).into(holder.image)
         holder.genre.text = film.original_language
         holder.name.text = film.title
+        if(!films[position].adult) holder.adult.text = "for all categories"
+            else holder.adult.text = "for adults only"
     }
 
     override fun getItemCount(): Int {
@@ -37,6 +39,7 @@ class MainFilmsFragmentAdapter(var films : ArrayList<Film>) :
         val image: ImageView = view.findViewById(R.id.film_recycler_view_item_cover)
         val name: TextView = view.findViewById(R.id.film_recycler_view_item_name)
         val genre: TextView = view.findViewById(R.id.film_recycler_view_item_genre)
+        val adult: TextView = view.findViewById(R.id.film_recycler_view_item_adult)
 
         init {
             view.setOnClickListener {
