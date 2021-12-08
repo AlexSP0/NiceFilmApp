@@ -7,4 +7,6 @@ interface MainFilmsPresenter {
     fun LoadedFilms(films : ArrayList<Film>)
     fun getAdultSettings() : Boolean
     fun setAdultSettings(showAdult : Boolean)
+    fun getFilmNote(id : Int) : String
+    fun setFilmNote(id : Int, note : String)
 }

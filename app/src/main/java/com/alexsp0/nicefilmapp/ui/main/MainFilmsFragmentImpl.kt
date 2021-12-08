@@ -71,7 +71,7 @@ class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFil
 
     private fun openCurrentFilmFragment(position: Int) {
         val act = activity as MainActivity
-        act.loadFragment(CurrentFilmFragment.newInstance(films[position]))
+        act.loadFragment(CurrentFilmFragment.newInstance(films[position], presenter))
     }
 
     companion object {

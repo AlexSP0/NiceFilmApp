@@ -1,4 +1,4 @@
-package com.alexsp0.nicefilmapp.app
+package com.alexsp0.nicefilmapp
 
 import android.app.Application
 import androidx.room.Room
@@ -8,7 +8,7 @@ import com.alexsp0.nicefilmapp.data.db.NotesDao
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        val appInstance = this
+        appInstance = this
     }
     companion object {
         private var appInstance : App? = null
@@ -23,7 +23,7 @@ class App : Application() {
                         db = Room.databaseBuilder(
                             appInstance!!.applicationContext,
                             FilmNotesDb::class.java,
-                            DB_NAME).build()
+                            DB_NAME).allowMainThreadQueries().build()
                     }
                 }
             }

@@ -40,4 +40,15 @@ class MainFilmsPresenterImpl(context: Context) : MainFilmsPresenter {
         this.getFilms()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getFilmNote(id: Int): String {
+        return model.getFilmNote(id)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun setFilmNote(id: Int, note: String) {
+        model.setFilmNote(id, note)
+    }
+
+
 }

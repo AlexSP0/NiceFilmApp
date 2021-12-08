@@ -50,6 +50,20 @@
             android:gravity="center"
             tools:text="10.0">
         </TextView>
+        <EditText
+            android:id="@+id/fragment_current_film_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/current_film_text_size"
+            android:gravity="center"
+            tools:text="Film Note">
+        </EditText>
+        <Button
+            android:id="@+id/fragment_current_film_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="save note"
+            android:inputType="textMultiLine"/>
 
     </LinearLayout>
 
