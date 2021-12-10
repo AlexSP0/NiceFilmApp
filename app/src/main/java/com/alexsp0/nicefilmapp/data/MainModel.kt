@@ -3,6 +3,7 @@ package com.alexsp0.nicefilmapp.data
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import com.alexsp0.nicefilmapp.App
+import com.alexsp0.nicefilmapp.data.db.FilmNoteEntity
 
 private const val SHARED_PREFERENCE_FILE = "file"
 private const val IS_ADULT_KEY = "adult"
@@ -23,9 +24,14 @@ abstract class MainModel(context: Context) {
         editor.apply()
     }
     open fun getFilmNote(id: Int) : String {
-        return "тыдыщ"
+        val film = dbFilmNotesDao.getFilmById(id)
+        if(film.isEmpty()) {
+            return " "
+        } else return film[0].note
     }
     open fun setFilmNote(id: Int, note : String) {
-
+        val time = java.util.Calendar.getInstance()
+        val film = FilmNoteEntity(0, id, time.timeInMillis, note)
+        dbFilmNotesDao.insert(film)
     }
 }

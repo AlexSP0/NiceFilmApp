@@ -32,7 +32,7 @@ class CurrentFilmFragment(private var film: Film, private var presenter : MainFi
         val genre : TextView = view.findViewById(R.id.fragment_current_film_genre)
         val image : ImageView = view.findViewById(R.id.fragment_current_film_cover_image)
         val note : EditText = view.findViewById(R.id.fragment_current_film_note)
-        val saveButton : Button = view.findViewById(R.id.setting_fragment_ok_button)
+        val saveButton : Button = view.findViewById(R.id.fragment_current_film_save_button)
         name.text = film.title
         genre.text=film.original_language
         image.setImageResource(R.drawable.film)
