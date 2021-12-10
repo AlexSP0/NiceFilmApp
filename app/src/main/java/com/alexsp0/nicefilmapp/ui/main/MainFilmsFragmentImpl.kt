@@ -11,10 +11,11 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.alexsp0.nicefilmapp.MainActivity
 import com.alexsp0.nicefilmapp.R
+import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
 import com.alexsp0.nicefilmapp.utils.Film
 
-class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
+class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFilmsFragment  {
     private lateinit var presenter : MainFilmsPresenterImpl
     private lateinit var recyclerView1 : RecyclerView
     private lateinit var recyclerView2 : RecyclerView
@@ -22,13 +23,14 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     private lateinit var adapter2: MainFilmsFragmentAdapter
     private var films : ArrayList<Film> = arrayListOf()
     private lateinit var progressBar : ProgressBar
+    init {
+        this.presenter = presenter as MainFilmsPresenterImpl
+    }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = MainFilmsPresenterImpl()
         presenter.attachView(this)
-        //initFilms()
     }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
@@ -37,13 +39,13 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
     ): View {
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
         progressBar = view.findViewById(R.id.progrees_bar_load_films)
-        presenter.getFilms()
         initRecyclersView(view)
+        presenter.getFilms()
         return view
     }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
-        //initFilms()
+
     }
     @RequiresApi(Build.VERSION_CODES.N)
     private fun initRecyclersView(view: View) {
@@ -66,25 +68,21 @@ class MainFilmsFragmentImpl : Fragment(), MainFilmsFragment  {
             }
         })
     }
-    private fun initFilms() {
-        films = arrayListOf<Film>()
-        val film = Film(false, arrayOf(0), 0, "asdasd", 0.0f, "",
-        "1", false, 0.0f, 0)
-        films.add(film)
-    }
+
     private fun openCurrentFilmFragment(position: Int) {
         val act = activity as MainActivity
-        act.loadFragment(CurrentFilmFragment.newInstance(films[position]))
+        act.loadFragment(CurrentFilmFragment.newInstance(films[position], presenter))
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() =  MainFilmsFragmentImpl()
+        fun newInstance(presenter : MainFilmsPresenter) =  MainFilmsFragmentImpl(presenter)
     }
 
     override fun updateFilms(films : ArrayList<Film>) {
         this.films.clear()
         this.films.addAll(films)
+        adapter1.notifyDataSetChanged()
     }
 
     override fun showProgressbar() {
