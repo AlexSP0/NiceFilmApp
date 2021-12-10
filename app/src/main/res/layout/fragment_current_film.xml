@@ -1,70 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/green_background"
     tools:context=".ui.main.CurrentFilmFragment">
+    <ImageView
+        android:id="@+id/fragment_current_film_cover_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        tools:src="@drawable/film">
+    </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/current_film_fragment_margin">
-        <ImageView
-            android:id="@+id/fragment_current_film_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:src="@drawable/film">
-        </ImageView>
-        <TextView
-            android:id="@+id/fragment_current_film_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/current_film_text_size"
-            android:gravity="center"
-            tools:text="Название">
-        </TextView>
-        <TextView
-            android:id="@+id/fragment_current_film_genre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/current_film_text_size"
-            android:gravity="center"
-            tools:text="Жанр">
-        </TextView>
-        <TextView
-            android:id="@+id/fragment_current_film_year"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/current_film_text_size"
-            android:gravity="center"
-            tools:text="2021">
-        </TextView>
-        <TextView
-            android:id="@+id/fragment_current_film_score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/current_film_text_size"
-            android:gravity="center"
-            tools:text="10.0">
-        </TextView>
-        <EditText
-            android:id="@+id/fragment_current_film_note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/current_film_text_size"
-            android:gravity="center"
-            tools:text="Film Note">
-        </EditText>
-        <Button
-            android:id="@+id/fragment_current_film_save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="save note"
-            android:inputType="textMultiLine"/>
+        android:layout_margin="@dimen/current_film_fragment_margin"
+        android:layout_weight="1"
+        android:orientation="vertical">
+            <TextView
+                android:id="@+id/fragment_current_film_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/current_film_text_size"
+                tools:text="Название"></TextView>
+
+            <TextView
+                android:id="@+id/fragment_current_film_genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/current_film_text_size"
+                tools:text="Жанр"></TextView>
+
+            <TextView
+                android:id="@+id/fragment_current_film_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/current_film_text_size"
+                tools:text="2021"></TextView>
+
+            <TextView
+                android:id="@+id/fragment_current_film_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/current_film_text_size"
+                tools:text="10.0"></TextView>
+
+            <EditText
+                android:id="@+id/fragment_current_film_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/current_film_text_size"
+                tools:text="Film Note"></EditText>
 
     </LinearLayout>
+    <Button
+        android:id="@+id/fragment_current_film_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:text="save note" />
 
-</FrameLayout>
+</LinearLayout>

@@ -4,8 +4,8 @@ import androidx.room.*
 
 @Dao
 interface NotesDao {
-    @Query("SELECT * FROM FilmNoteEntity")
-    fun getFilmById(id : Long) : List<FilmNoteEntity>
+    @Query("SELECT * FROM FilmNoteEntity WHERE filmId LIKE :id")
+    fun getFilmById(id: Int) : List<FilmNoteEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert (entity : FilmNoteEntity)
