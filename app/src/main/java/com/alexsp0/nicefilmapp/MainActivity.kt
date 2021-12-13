@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         initNavigationView()
         loadFragment(MainFilmsFragmentImpl.newInstance(presenter))
         registerReceiver(InetBroadcastReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+
     }
 
     private fun initNavigationView() {
