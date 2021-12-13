@@ -2,13 +2,16 @@ package com.alexsp0.nicefilmapp
 
 
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
@@ -17,6 +20,11 @@ import com.alexsp0.nicefilmapp.ui.main.SettingsFragment
 import com.alexsp0.nicefilmapp.utils.InetBroadcastReceiver
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import androidx.core.app.ActivityCompat.requestPermissions
+
+const val REQUEST_CODE = 111
 
 //Функция-расширение как выражение и как фича котлина
 fun MainActivity.showSnackbarWithText(res : Int) =
@@ -26,13 +34,13 @@ fun MainActivity.showSnackbarWithText(res : Int) =
 
 class MainActivity : AppCompatActivity() {
     private var presenter : MainFilmsPresenter = MainFilmsPresenterImpl(this)
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initNavigationView()
         loadFragment(MainFilmsFragmentImpl.newInstance(presenter))
         registerReceiver(InetBroadcastReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-
     }
 
     private fun initNavigationView() {
@@ -80,3 +88,5 @@ class MainActivity : AppCompatActivity() {
         this.showSnackbarWithText(R.string.snackbar_text)
     }
 }
+
+

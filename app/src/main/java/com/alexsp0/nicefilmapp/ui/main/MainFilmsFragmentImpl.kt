@@ -1,16 +1,26 @@
 package com.alexsp0.nicefilmapp.ui.main
 
+import android.Manifest
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.alexsp0.nicefilmapp.MainActivity
 import com.alexsp0.nicefilmapp.R
+import com.alexsp0.nicefilmapp.REQUEST_CODE
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
 import com.alexsp0.nicefilmapp.utils.Film
@@ -38,6 +48,7 @@ class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFil
         savedInstanceState: Bundle?
     ): View {
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
+        checkNecessaryPermissions()
         progressBar = view.findViewById(R.id.progrees_bar_load_films)
         initRecyclersView(view)
         presenter.getFilms()
@@ -93,5 +104,40 @@ class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFil
         progressBar.visibility=ProgressBar.INVISIBLE
     }
 
+    private fun checkNecessaryPermissions() {
+        val act = activity as MainActivity
+        if(ContextCompat.checkSelfPermission(act,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED) {
+            getGeo()
+        } else {
+
+            AlertDialog.Builder(act).setTitle("Разрешение на геолокацию")
+                .setMessage("Очень надо геолокацию, смело разрешайте, не утащим")
+                .setPositiveButton("Разрешаю!") { _, _ -> requestNecessaryPermission()}
+                .setNegativeButton("Я скрываюсь!") { dialog, _ -> dialog.dismiss() }
+                .setNeutralButton("Идем в разрашения?") { dialog: DialogInterface, which ->
+                    val intent = Intent()
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    intent.setData(Uri.parse("package:" + act.packageName))
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                    act.startActivity(intent)
+
+                }
+                .create().show()
+            requestNecessaryPermission()
+        }
+    }
+
+    private fun requestNecessaryPermission() {
+        val act = activity as MainActivity
+        ActivityCompat.requestPermissions(act,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
+    }
+
+    private fun getGeo() {
+
+    }
 
 }
