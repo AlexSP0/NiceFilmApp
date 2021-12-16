@@ -43,7 +43,7 @@ class CurrentFilmFragment(private var film: Film, private var presenter : MainFi
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }
         openMapButton.setOnClickListener {
-                        
+            presenter.getFilmDetails(film.id)
         }
     }
 

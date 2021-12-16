@@ -34,4 +34,5 @@ abstract class MainModel(context: Context) {
         val film = FilmNoteEntity(0, id, time.timeInMillis, note)
         dbFilmNotesDao.insert(film)
     }
+    abstract fun getFilmDetails(id:Int)
 }
