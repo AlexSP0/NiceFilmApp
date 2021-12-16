@@ -33,6 +33,7 @@ class CurrentFilmFragment(private var film: Film, private var presenter : MainFi
         val image : ImageView = view.findViewById(R.id.fragment_current_film_cover_image)
         val note : EditText = view.findViewById(R.id.fragment_current_film_note)
         val saveButton : Button = view.findViewById(R.id.fragment_current_film_save_button)
+        val openMapButton : Button = view.findViewById(R.id.fragment_current_film_open_map)
         name.text = film.title
         genre.text=film.original_language
         image.setImageResource(R.drawable.film)
@@ -40,6 +41,9 @@ class CurrentFilmFragment(private var film: Film, private var presenter : MainFi
         saveButton.setOnClickListener {
             presenter.setFilmNote(film.id, note.text.toString())
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+        }
+        openMapButton.setOnClickListener {
+            presenter.getFilmDetails(film.id)
         }
     }
 

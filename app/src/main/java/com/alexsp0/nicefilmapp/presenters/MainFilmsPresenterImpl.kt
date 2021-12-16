@@ -50,5 +50,14 @@ class MainFilmsPresenterImpl(context: Context) : MainFilmsPresenter {
         model.setFilmNote(id, note)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getFilmDetails(id: Int) {
+        model.getFilmDetails(id)
+    }
+
+    override fun setFilmCountry(country: String) {
+        fragment?.loadCountryMap(country)
+    }
+
 
 }

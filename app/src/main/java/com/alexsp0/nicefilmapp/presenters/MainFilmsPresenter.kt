@@ -9,4 +9,6 @@ interface MainFilmsPresenter {
     fun setAdultSettings(showAdult : Boolean)
     fun getFilmNote(id : Int) : String
     fun setFilmNote(id : Int, note : String)
+    fun getFilmDetails ( id : Int)
+    fun setFilmCountry(country : String)
 }

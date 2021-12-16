@@ -48,7 +48,6 @@ class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFil
         savedInstanceState: Bundle?
     ): View {
         val view : View = inflater.inflate(R.layout.fragment_main_films, container, false)
-        checkNecessaryPermissions()
         progressBar = view.findViewById(R.id.progrees_bar_load_films)
         initRecyclersView(view)
         presenter.getFilms()
@@ -104,40 +103,8 @@ class MainFilmsFragmentImpl(presenter: MainFilmsPresenter) : Fragment(), MainFil
         progressBar.visibility=ProgressBar.INVISIBLE
     }
 
-    private fun checkNecessaryPermissions() {
+    override fun loadCountryMap(country: String) {
         val act = activity as MainActivity
-        if(ContextCompat.checkSelfPermission(act,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED) {
-            getGeo()
-        } else {
-
-            AlertDialog.Builder(act).setTitle("Разрешение на геолокацию")
-                .setMessage("Очень надо геолокацию, смело разрешайте, не утащим")
-                .setPositiveButton("Разрешаю!") { _, _ -> requestNecessaryPermission()}
-                .setNegativeButton("Я скрываюсь!") { dialog, _ -> dialog.dismiss() }
-                .setNeutralButton("Идем в разрашения?") { dialog: DialogInterface, which ->
-                    val intent = Intent()
-                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    intent.setData(Uri.parse("package:" + act.packageName))
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-                    act.startActivity(intent)
-
-                }
-                .create().show()
-            requestNecessaryPermission()
-        }
+        act.loadFragment(CurrentFilmMapsFragment(country))
     }
-
-    private fun requestNecessaryPermission() {
-        val act = activity as MainActivity
-        ActivityCompat.requestPermissions(act,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
-    }
-
-    private fun getGeo() {
-
-    }
-
 }
