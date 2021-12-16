@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_background"
+    tools:context=".ui.main.SettingsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/current_film_fragment_margin">
+        <CheckBox
+            android:id="@+id/show_adult_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show adult films" />
+
+        <Button
+            android:id="@+id/setting_fragment_ok_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ok" />
+
+    </LinearLayout>
+
+</FrameLayout>
