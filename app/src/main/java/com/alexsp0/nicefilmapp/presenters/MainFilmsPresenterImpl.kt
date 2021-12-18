@@ -41,6 +41,14 @@ class MainFilmsPresenterImpl(context: Context) : MainFilmsPresenter {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
+    override fun getShowNotification() : Boolean = model.loadShowNotification()
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun setShowNotification(showNotification: Boolean) {
+        model.saveShowNotification(showNotification)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun getFilmNote(id: Int): String {
         return model.getFilmNote(id)
     }

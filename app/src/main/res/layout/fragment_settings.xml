@@ -17,6 +17,12 @@
             android:layout_height="wrap_content"
             android:text="Show adult films" />
 
+        <CheckBox
+            android:id="@+id/show_notification_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show notification" />
+
         <Button
             android:id="@+id/setting_fragment_ok_button"
             android:layout_width="match_parent"
