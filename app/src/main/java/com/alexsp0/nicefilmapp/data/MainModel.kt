@@ -7,6 +7,7 @@ import com.alexsp0.nicefilmapp.data.db.FilmNoteEntity
 
 private const val SHARED_PREFERENCE_FILE = "file"
 private const val IS_ADULT_KEY = "adult"
+private const val IS_SHOW_NOTIFICATION = "show_notification"
 
 
 abstract class MainModel(context: Context) {
@@ -34,4 +35,14 @@ abstract class MainModel(context: Context) {
         val film = FilmNoteEntity(0, id, time.timeInMillis, note)
         dbFilmNotesDao.insert(film)
     }
+    open fun loadShowNotification() : Boolean = context
+        .getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE)
+        .getBoolean(IS_SHOW_NOTIFICATION, false)
+    open fun saveShowNotification(showNotification : Boolean) {
+        val sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean(IS_SHOW_NOTIFICATION, showNotification)
+        editor.apply()
+    }
+    abstract fun getFilmDetails(id:Int)
 }

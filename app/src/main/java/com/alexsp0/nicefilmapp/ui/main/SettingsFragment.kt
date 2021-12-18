@@ -15,6 +15,7 @@ import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 class SettingsFragment(presenter : MainFilmsPresenter) : Fragment() {
     private lateinit var okButton : Button
     private lateinit var isAdultCheckbox : CheckBox
+    private lateinit var isShowNotification : CheckBox
     private lateinit var presenter : MainFilmsPresenter
     init {
         this.presenter = presenter
@@ -26,9 +27,12 @@ class SettingsFragment(presenter : MainFilmsPresenter) : Fragment() {
         var view = inflater.inflate(R.layout.fragment_settings, container, false)
         isAdultCheckbox = view.findViewById(R.id.show_adult_checkBox)
         isAdultCheckbox.isChecked = presenter.getAdultSettings()
+        isShowNotification = view.findViewById(R.id.show_notification_checkBox)
+        isShowNotification.isChecked = presenter.getShowNotification()
         okButton = view.findViewById(R.id.setting_fragment_ok_button)
         okButton.setOnClickListener {
             presenter.setAdultSettings(isAdultCheckbox.isChecked)
+            presenter.setShowNotification(isShowNotification.isChecked)
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }
 

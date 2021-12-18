@@ -22,7 +22,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import android.Manifest
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.app.PendingIntent.getBroadcast
+import android.content.Context
+import android.content.Intent
 import androidx.core.app.ActivityCompat.requestPermissions
+import com.alexsp0.nicefilmapp.utils.NotificationReceiver
 
 const val REQUEST_CODE = 111
 
@@ -39,8 +45,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initNavigationView()
-        loadFragment(MainFilmsFragmentImpl.newInstance(presenter))
         registerReceiver(InetBroadcastReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        initNotificationReceiver()
+        loadFragment(MainFilmsFragmentImpl.newInstance(presenter))
+
+    }
+
+    private fun initNotificationReceiver() {
+        val intent = Intent(this, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0,
+            intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis(), AlarmManager.INTERVAL_DAY,
+            pendingIntent)
     }
 
     private fun initNavigationView() {
