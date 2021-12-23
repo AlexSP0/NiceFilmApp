@@ -8,6 +8,7 @@ import android.content.Intent
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.alexsp0.nicefilmapp.R
 
 public const val FILM_NOTIFICATION_ID = 1234
 private const val FILM_NOTIFICATION_CHANNEL = "FILM CHANNEL"
@@ -21,7 +22,7 @@ class NotificationReceiver : BroadcastReceiver() {
             NotificationManagerCompat.IMPORTANCE_HIGH
         ).setName("Film channel").setDescription("sdfsd").build()
         notificationManager.createNotificationChannel(channel)
-        val notification = NotificationCompat.Builder(context).setSmallIcon(0)
+        val notification = NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_home_svgrepo_com)
             .setContentTitle("Title").setContentText("Notification Text")
             .setDefaults(Notification.DEFAULT_SOUND).build()
         notificationManager.notify(1, notification)

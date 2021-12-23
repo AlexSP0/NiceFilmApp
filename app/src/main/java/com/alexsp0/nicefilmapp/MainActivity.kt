@@ -1,34 +1,27 @@
 package com.alexsp0.nicefilmapp
 
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
 import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragmentImpl
 import com.alexsp0.nicefilmapp.ui.main.SettingsFragment
 import com.alexsp0.nicefilmapp.utils.InetBroadcastReceiver
+import com.alexsp0.nicefilmapp.utils.NotificationReceiver
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import android.Manifest
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.app.PendingIntent.getBroadcast
-import android.content.Context
-import android.content.Intent
-import androidx.core.app.ActivityCompat.requestPermissions
-import com.alexsp0.nicefilmapp.utils.NotificationReceiver
 
 const val REQUEST_CODE = 111
 
