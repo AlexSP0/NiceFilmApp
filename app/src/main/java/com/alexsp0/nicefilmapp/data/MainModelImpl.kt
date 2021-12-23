@@ -60,6 +60,10 @@ class MainModelImpl(private var presenter: MainFilmsPresenter, context: Context)
         presenter.LoadedFilms(films)
     }
 
+    override fun getFilmDetails(id: Int) {
+        TODO("Not yet implemented")
+    }
+
     @RequiresApi(Build.VERSION_CODES.N)
     public fun loadGenres() {
 //        Thread {

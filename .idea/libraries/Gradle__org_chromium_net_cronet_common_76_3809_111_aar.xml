@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: org.chromium.net:cronet-common:76.3809.111@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4b255ac8ca0ba578d5adba17345166e2/transformed/jetified-cronet-common-76.3809.111/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4b255ac8ca0ba578d5adba17345166e2/transformed/jetified-cronet-common-76.3809.111/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4b255ac8ca0ba578d5adba17345166e2/transformed/jetified-cronet-common-76.3809.111/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bc3cf118777779077c035d60a3bd18a1/transformed/jetified-cronet-common-76.3809.111/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bc3cf118777779077c035d60a3bd18a1/transformed/jetified-cronet-common-76.3809.111/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bc3cf118777779077c035d60a3bd18a1/transformed/jetified-cronet-common-76.3809.111/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

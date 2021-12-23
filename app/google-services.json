@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "170562363207",
+    "project_id": "nicefilmapp-7133d",
+    "storage_bucket": "nicefilmapp-7133d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170562363207:android:ea6651b30d4c16cce6f662",
+        "android_client_info": {
+          "package_name": "com.alexsp0.nicefilmapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170562363207-19ukqbb5enelpb252ei0ceuhonqmt627.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR3Kh-NwinxMyF8sR27jeCWICpg3aikJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170562363207-19ukqbb5enelpb252ei0ceuhonqmt627.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

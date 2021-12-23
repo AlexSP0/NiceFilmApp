@@ -1,28 +1,27 @@
 package com.alexsp0.nicefilmapp
 
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenter
 import com.alexsp0.nicefilmapp.presenters.MainFilmsPresenterImpl
 import com.alexsp0.nicefilmapp.ui.main.MainFilmsFragmentImpl
 import com.alexsp0.nicefilmapp.ui.main.SettingsFragment
 import com.alexsp0.nicefilmapp.utils.InetBroadcastReceiver
+import com.alexsp0.nicefilmapp.utils.NotificationReceiver
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import android.Manifest
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import androidx.core.app.ActivityCompat.requestPermissions
 
 const val REQUEST_CODE = 111
 
@@ -39,8 +38,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initNavigationView()
-        loadFragment(MainFilmsFragmentImpl.newInstance(presenter))
         registerReceiver(InetBroadcastReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        initNotificationReceiver()
+        loadFragment(MainFilmsFragmentImpl.newInstance(presenter))
+
+    }
+
+    private fun initNotificationReceiver() {
+        val intent = Intent(this, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0,
+            intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis(), AlarmManager.INTERVAL_DAY,
+            pendingIntent)
     }
 
     private fun initNavigationView() {

@@ -7,4 +7,5 @@ interface MainFilmsFragment {
     fun updateFilms(films : ArrayList<Film>)
     fun showProgressbar()
     fun hideProgressbar()
+    fun loadCountryMap(country : String)
 }
